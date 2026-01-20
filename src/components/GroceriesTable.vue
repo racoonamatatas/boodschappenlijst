@@ -1,12 +1,5 @@
 <script setup>
-import {ref, computed} from 'vue';
-
-const products = ref([
-    {item: 'Rice', price: 1.0, quantity: 0},
-    {item: 'Broccoli', price: 0.99, quantity: 0},
-    {item: 'Biscuits', price: 1.2, quantity: 0},
-    {item: 'Nuts', price: 2.99, quantity: 0},
-]);
+import {computed} from 'vue';
 
 const calculateSubtotal = product => product.price * product.quantity;
 
