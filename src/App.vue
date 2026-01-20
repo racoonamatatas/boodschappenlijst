@@ -1,7 +1,6 @@
 <script setup>
-import GroceriesTable from './components/GroceriesTable.vue';
-
 import {ref} from 'vue';
+import GroceriesTable from './components/GroceriesTable.vue';
 
 const products = ref([
     {item: 'Rice', price: 1.0, quantity: 0},
@@ -13,7 +12,7 @@ const products = ref([
 
 <template>
     <div>
-        <GroceriesTable />
+        <GroceriesTable :products="products" />
     </div>
 </template>
 

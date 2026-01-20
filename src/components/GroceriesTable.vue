@@ -1,11 +1,13 @@
 <script setup>
 import {computed} from 'vue';
 
+const props = defineProps(['products']);
+
 const calculateSubtotal = product => product.price * product.quantity;
 
 const calculateTotal = computed(() => {
     let total = 0;
-    products.value.forEach(product => {
+    props.products.forEach(product => {
         total += calculateSubtotal(product);
     });
     return total;
@@ -21,7 +23,7 @@ const calculateTotal = computed(() => {
                 <th>Quantity</th>
                 <th>Subtotal</th>
             </tr>
-            <tr v-for="(product, index) in products" :key="index">
+            <tr v-for="(product, index) in props.products" :key="index">
                 <td>{{ product.item }}</td>
                 <td>{{ product.price }}</td>
                 <td>
