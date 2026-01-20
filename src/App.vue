@@ -1,18 +1,22 @@
 <script setup>
-import {ref, reactive, computed} from 'vue';
+import {ref, computed} from 'vue';
 
 const products = ref([
-    {item: 'Rice', price: 1.00, quantity: 0},
+    {item: 'Rice', price: 1.0, quantity: 0},
     {item: 'Broccoli', price: 0.99, quantity: 0},
-    {item: 'Biscuits', price: 1.20, quantity: 0},
-    {item: 'Nuts', price: 2.99, quantity: 0}
+    {item: 'Biscuits', price: 1.2, quantity: 0},
+    {item: 'Nuts', price: 2.99, quantity: 0},
 ]);
 
-const subtotals = () => {
-    
-}
+const calculateSubtotal = product => product.price * product.quantity;
 
-// const subTotal = computed(() => products.value.price * products.value.quantity);
+const calculateTotal = computed(() => {
+    let total = 0;
+    products.value.forEach(product => {
+        total += calculateSubtotal(product);
+    });
+    return total;
+});
 </script>
 
 <template>
@@ -26,15 +30,15 @@ const subtotals = () => {
             </tr>
             <tr v-for="(product, index) in products" :key="index">
                 <td>{{ product.item }}</td>
-                <td>{{ product.price}}</td>
+                <td>{{ product.price }}</td>
                 <td>
                     <input v-model.number="product.quantity" min="0" />
                 </td>
-                <td>{{(product.price * product.quantity).toFixed(2) }}</td>
+                <td>{{ calculateSubtotal(product).toFixed(2) }}</td>
             </tr>
-            <tr >
+            <tr>
                 <td colspan="3">Total:</td>
-                <td></td>
+                <td>{{ calculateTotal.toFixed(2) }}</td>
             </tr>
         </tbody>
     </table>
