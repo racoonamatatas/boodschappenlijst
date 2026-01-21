@@ -12,10 +12,10 @@ import {computed, ref} from 'vue';
 
 // state
 const groceries = ref([
-    {item: 'Rice', price: 1.0, quantity: 0},
-    {item: 'Broccoli', price: 0.99, quantity: 0},
-    {item: 'Biscuits', price: 1.2, quantity: 0},
-    {item: 'Nuts', price: 2.99, quantity: 0},
+    {name: 'Rice', price: 1.0, amount: 0},
+    {name: 'Broccoli', price: 0.99, amount: 0},
+    {name: 'Biscuits', price: 1.2, amount: 0},
+    {name: 'Nuts', price: 2.99, amount: 0},
 ]);
 
 // getters
