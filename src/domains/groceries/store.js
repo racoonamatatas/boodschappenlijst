@@ -8,6 +8,8 @@
 //
 // Stores are reactive! Any change is automatically propagated.
 
+import {computed, ref} from 'vue';
+
 // state
 const groceries = ref([
     {item: 'Rice', price: 1.0, quantity: 0},
