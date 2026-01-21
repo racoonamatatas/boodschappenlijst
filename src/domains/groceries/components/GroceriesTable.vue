@@ -3,7 +3,7 @@ import {computed} from 'vue';
 
 const props = defineProps(['products']);
 
-const calculateSubtotal = product => product.price * product.quantity;
+const calculateSubtotal = product => product.price * product.amount;
 
 const calculateTotal = computed(() => {
     let total = 0;
@@ -24,10 +24,10 @@ const calculateTotal = computed(() => {
                 <th>Subtotal</th>
             </tr>
             <tr v-for="(product, index) in props.products" :key="index">
-                <td>{{ product.item }}</td>
+                <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>
-                    <input v-model.number="product.quantity" min="0" />
+                    <input v-model.number="product.amount" min="0" />
                 </td>
                 <td>{{ calculateSubtotal(product).toFixed(2) }}</td>
             </tr>
