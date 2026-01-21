@@ -12,15 +12,40 @@ import {computed, ref} from 'vue';
 
 // state
 const groceries = ref([
-    {name: 'Rice', price: 1.0, amount: 0},
-    {name: 'Broccoli', price: 0.99, amount: 0},
-    {name: 'Biscuits', price: 1.2, amount: 0},
-    {name: 'Nuts', price: 2.99, amount: 0},
+    {id: 0, name: 'Rice', price: 1.0, amount: 0},
+    {id: 1, name: 'Broccoli', price: 0.99, amount: 0},
+    {id: 2, name: 'Biscuits', price: 1.2, amount: 0},
+    {id: 3, name: 'Nuts', price: 2.99, amount: 0},
 ]);
 
 // getters
 export const getAllGroceries = computed(() => groceries.value);
-export const getGroceryById = id => computed(() => groceries.value.find(grocery => grocery.id == id));
+export const getGroceryById = id => computed(() => groceries.value.find(grocery => grocery.id === id));
 
 // Actions
-export const addGrocery = grocery => groceries.value.push(grocery);
+let nextId = groceries.value.length; // Ids start at zero so length is the next possible one.
+
+export const addGrocery = grocery => {
+    grocery.id = nextId++;
+    groceries.value.push(grocery);
+};
+
+export const updateGrocery = groceryUpdates => {
+    const index = groceries.value.findIndex(grocery => grocery.id === groceryUpdates.id);
+    console.log(`groceryUpdates id: ${groceryUpdates.id}`);
+    console.log(index);
+    if (index !== -1) {
+        groceries.value[index] = groceryUpdates;
+        console.log(
+            `grocery: ${groceries.value[index].id}, ${groceries.value[index].name}, ${groceries.value[index].price}, ${groceries.value[index].amount},`,
+        );
+    }
+};
+
+export const deleteGrocery = id => {
+    const index = groceries.value.findIndex(grocery => grocery.id === id);
+
+    if (index !== -1) {
+        groceries.value.splice(index, 1);
+    }
+};

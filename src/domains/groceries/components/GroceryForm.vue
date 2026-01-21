@@ -17,7 +17,7 @@ const resetGrocery = () => {
 };
 
 const emitEvent = () => {
-    emit('submit', createGrocery);
+    emit('submit', createGrocery());
     resetGrocery();
 };
 </script>

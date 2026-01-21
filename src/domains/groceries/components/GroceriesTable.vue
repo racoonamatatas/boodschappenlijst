@@ -1,5 +1,9 @@
 <script setup>
 import {computed} from 'vue';
+import {useRouter} from 'vue-router';
+import {deleteGrocery} from '../store';
+
+const router = useRouter();
 
 const props = defineProps(['products']);
 
@@ -30,6 +34,12 @@ const calculateTotal = computed(() => {
                     <input v-model.number="product.amount" min="0" />
                 </td>
                 <td>{{ calculateSubtotal(product).toFixed(2) }}</td>
+                <td>
+                    <button @click="router.push(`/edit/${product.id}`)">Edit</button>
+                </td>
+                <td>
+                    <button @click="deleteGrocery(product.id)">Delete</button>
+                </td>
             </tr>
             <tr>
                 <td colspan="3">Total:</td>
