@@ -6,12 +6,19 @@ const emit = defineEmits(['submit']);
 
 const name = ref(props.grocery.name);
 const price = ref(props.grocery.price);
-const quantity = ref(props.grocery.amount);
+const amount = ref(props.grocery.amount);
 
-const createGrocery = () => ({name: name.value, price: price.value, quantity: quantity.value});
+const createGrocery = () => ({name: name.value, price: price.value, amount: amount.value});
+
+const resetGrocery = () => {
+    name.value = props.grocery.name;
+    price.value = props.grocery.price;
+    amount.value = props.grocery.amount;
+};
 
 const emitEvent = () => {
     emit('submit', createGrocery);
+    resetGrocery();
 };
 </script>
 
