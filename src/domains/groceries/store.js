@@ -31,14 +31,10 @@ export const addGrocery = grocery => {
 };
 
 export const updateGrocery = groceryUpdates => {
-    const index = groceries.value.findIndex(grocery => grocery.id === groceryUpdates.id);
-    console.log(`groceryUpdates id: ${groceryUpdates.id}`);
-    console.log(index);
-    if (index !== -1) {
-        groceries.value[index] = groceryUpdates;
-        console.log(
-            `grocery: ${groceries.value[index].id}, ${groceries.value[index].name}, ${groceries.value[index].price}, ${groceries.value[index].amount},`,
-        );
+    const grocery = groceries.value.find(item => item.id === groceryUpdates.id);
+
+    if (grocery) {
+        Object.assign(grocery, groceryUpdates);
     }
 };
 
